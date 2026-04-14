@@ -7,7 +7,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
 spec:
   rules:
-    - host: ikno.sh
+    - host: ikno.charemma.de
       http:
         paths:
           - path: /
@@ -19,4 +19,4 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - ikno.sh
+        - ikno.charemma.de
