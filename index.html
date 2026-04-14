@@ -60,7 +60,7 @@
     <div class="container">
       <h1 class="hero-name">ikno</h1>
       <p class="hero-tagline">Your workday, <span>reconstructed.</span></p>
-      <p class="subtitle">Work first, summarize later. One command turns your git commits, notes, and AI sessions into a clear recap.</p>
+      <p class="subtitle">Work first, summarize later. One command feeds your git commits, notes, and AI sessions to an LLM -- and you get a real recap.</p>
 
       <!-- Terminal Demo -->
       <div class="terminal-wrapper" role="img" aria-label="Terminal showing ikno recap output with weekly activity digest">
@@ -112,8 +112,8 @@
       <h2>Stop tracking. Start reconstructing.</h2>
       <div class="positioning-points">
         <p>No timers. No categories. No discipline required.</p>
-        <p>You already leave traces everywhere -- git commits, session logs, timestamped notes. ikno reads them and turns them into something you can think with.</p>
-        <p>Your workflow stays exactly the same. ikno just makes sense of it.</p>
+        <p>You already leave traces everywhere -- git commits, session logs, timestamped notes. ikno collects the raw data and sends it to an LLM, which generates a human-readable summary. Not a list of commits -- an actual recap of what you worked on and why.</p>
+        <p>Your workflow stays exactly the same. At the end of the day, run <code>ikno recap today</code> and let the AI make sense of it.</p>
       </div>
     </div>
   </section>
@@ -126,17 +126,17 @@
         <div class="step">
           <span class="step-number">1</span>
           <h3>Point</h3>
-          <p>Run <code>ikno init</code> and point it at your repos, notes, and sessions. Auto-detection finds most sources for you.</p>
+          <p>Run <code>ikno init</code> and point it at your repos, notes, and AI sessions. Auto-detection finds most sources for you.</p>
         </div>
         <div class="step">
           <span class="step-number">2</span>
           <h3>Work</h3>
-          <p>Do your thing. Write code, take notes, pair with AI. Nothing changes about your workflow.</p>
+          <p>Commit code, write notes, pair with Claude Code. Nothing changes about your workflow.</p>
         </div>
         <div class="step">
           <span class="step-number">3</span>
           <h3>Recap</h3>
-          <p>Run <code>ikno recap today</code> and get a clear summary. Pick from 6 built-in styles or write your own.</p>
+          <p>Run <code>ikno recap today</code>. The AI reads everything -- including your coding sessions -- and writes a summary. Choose from styles like digest, brief, stats, report, or retro.</p>
         </div>
       </div>
     </div>
@@ -148,20 +148,20 @@
       <h2 class="sr-only">Features</h2>
       <div class="features-grid">
         <div class="feature-card">
-          <h3>Works with what you have</h3>
-          <p>Git repos, markdown notes, Obsidian vaults, Claude Code sessions. More sources coming -- Jira, Slack, calendar, browser history. No workflow changes needed.</p>
+          <h3>AI-generated recaps</h3>
+          <p>ikno collects raw data and feeds it to an LLM that writes a real summary -- not a commit log dump. Works with Claude CLI, OpenAI API, or local Ollama. Bring your own model.</p>
         </div>
         <div class="feature-card">
-          <h3>AI that understands context</h3>
-          <p>Not just bullet lists -- actual summaries that group related work, spot themes, and surface what mattered. Uses your own AI backend.</p>
+          <h3>Knows what you did with AI</h3>
+          <p>ikno reads your Claude Code sessions, so the recap includes what you built with AI -- not just your git commits. No other tool does this.</p>
         </div>
         <div class="feature-card">
           <h3>Your machine, your data</h3>
           <p>Everything stays local. No cloud, no accounts, no telemetry. Config lives in ~/.config/ikno/ and nowhere else.</p>
         </div>
         <div class="feature-card">
-          <h3>Ready in 60 seconds</h3>
-          <p>Run the init wizard, let it auto-detect your sources, get your first recap. No setup ceremony, no config files to write by hand.</p>
+          <h3>Works with what you have</h3>
+          <p>Git repos, markdown notes, Obsidian vaults, Claude Code sessions. More sources coming -- Jira, Slack, calendar. No workflow changes needed.</p>
         </div>
       </div>
     </div>

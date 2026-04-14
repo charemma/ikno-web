@@ -36,7 +36,7 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   overflow-y: scroll;
 }
 
@@ -421,6 +421,15 @@ body {
 
 .positioning-points p:last-child {
   margin-bottom: 0;
+}
+
+.positioning-points code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--blue);
+  background: var(--surface0);
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
 }
 
 /* -- How it works -- */
