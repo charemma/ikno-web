@@ -122,6 +122,16 @@ body {
   color: var(--blue);
 }
 
+.hero .hero-secondary {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--overlay1);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
 .hero .subtitle {
   font-size: 1.15rem;
   color: var(--subtext0);
@@ -421,6 +431,13 @@ body {
 
 .positioning-points p:last-child {
   margin-bottom: 0;
+}
+
+.positioning-points .positioning-kicker {
+  color: var(--text);
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
 }
 
 .positioning-points code {
