@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: ikno-website
-          image: ghcr.io/charemma/ikno-website:latest
+          image: ghcr.io/charemma/ikno-web:latest
           ports:
             - containerPort: 80

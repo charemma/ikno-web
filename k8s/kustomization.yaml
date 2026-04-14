@@ -5,6 +5,6 @@ resources:
   - service.yaml
   - ingress.yaml
 images:
-  - name: ghcr.io/charemma/ikno-website
-    newName: ghcr.io/charemma/ikno-website
+  - name: ghcr.io/charemma/ikno-web
+    newName: ghcr.io/charemma/ikno-web
     newTag: latest
