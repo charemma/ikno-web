@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ikno -- Your workday, reconstructed.</title>
+  <meta name="description" content="Reconstruct your workday from git commits, notes, and AI sessions. One command, no tracking.">
+  <meta name="keywords" content="workday recap, git summary, CLI tool, developer productivity, local-first, time reconstruction">
+  <link rel="canonical" href="https://charemma.de/ikno/">
+  <link rel="icon" href="/ikno/favicon.ico" type="image/x-icon">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ikno -- Your workday, reconstructed.">
+  <meta property="og:description" content="Reconstruct your workday from git commits, notes, and AI sessions. One command, no tracking.">
+  <meta property="og:url" content="https://charemma.de/ikno/">
+  <meta property="og:image" content="https://charemma.de/ikno/og-image.png">
+  <meta property="og:site_name" content="ikno">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ikno -- Your workday, reconstructed.">
+  <meta name="twitter:description" content="Reconstruct your workday from git commits, notes, and AI sessions. One command, no tracking.">
+  <meta name="twitter:image" content="https://charemma.de/ikno/og-image.png">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ikno",
+    "description": "Reconstruct your workday from git commits, notes, and AI sessions. One command, no tracking.",
+    "url": "https://charemma.de/ikno/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Linux, macOS",
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "sourceOrganization": {
+      "@type": "Person",
+      "name": "Charalambos Emmanouilidis",
+      "url": "https://github.com/charemma"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.remove('no-js');</script>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero" aria-label="Introduction">
+    <div class="container">
+      <h1 class="hero-name">ikno</h1>
+      <p class="hero-tagline">Your workday, <span>reconstructed.</span></p>
+      <p class="subtitle">Work first, summarize later. One command turns your git commits, notes, and AI sessions into a clear recap.</p>
+
+      <!-- Terminal Demo -->
+      <div class="terminal-wrapper" role="img" aria-label="Terminal showing ikno recap output with weekly activity digest">
+        <div class="terminal">
+          <div class="terminal-header">
+            <div class="terminal-dot"></div>
+            <div class="terminal-dot"></div>
+            <div class="terminal-dot"></div>
+            <div class="terminal-title">terminal</div>
+          </div>
+          <div class="terminal-body" id="terminal" style="text-align:left">
+            <div class="terminal-line" style="text-align:left">
+              <span class="prompt">~ </span><span class="typed-text" id="typed-cmd"></span><span class="cursor" id="cursor"></span>
+            </div>
+            <div class="output-block" id="output">
+<pre class="terminal-output" id="terminal-lines" style="text-align:left"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Install -->
+      <div class="install" id="install">
+        <h2>Install</h2>
+        <div class="install-options" role="list" aria-label="Installation methods">
+          <div class="install-option" role="listitem">
+            <span class="install-label">curl</span>
+            <code class="install-cmd">curl -fsSL https://charemma.de/ikno/install.sh | sh</code>
+            <button class="copy-btn" aria-label="Copy curl install command" data-cmd="curl -fsSL https://charemma.de/ikno/install.sh | sh">copy</button>
+          </div>
+          <div class="install-option" role="listitem">
+            <span class="install-label">nix</span>
+            <code class="install-cmd">nix run github:charemma/ikno</code>
+            <button class="copy-btn" aria-label="Copy nix install command" data-cmd="nix run github:charemma/ikno">copy</button>
+          </div>
+          <div class="install-option" role="listitem">
+            <span class="install-label">go</span>
+            <code class="install-cmd">go install github.com/charemma/ikno@latest</code>
+            <button class="copy-btn" aria-label="Copy go install command" data-cmd="go install github.com/charemma/ikno@latest">copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Positioning -->
+  <section class="positioning reveal" aria-label="Philosophy">
+    <div class="container">
+      <h2>Stop tracking. Start reconstructing.</h2>
+      <div class="positioning-points">
+        <p>No timers. No categories. No discipline required.</p>
+        <p>You already leave traces everywhere -- git commits, session logs, timestamped notes. ikno reads them and turns them into something you can think with.</p>
+        <p>Your workflow stays exactly the same. ikno just makes sense of it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how-it-works reveal" aria-label="How it works">
+    <div class="container">
+      <h2>Three steps. That's it.</h2>
+      <div class="steps-grid">
+        <div class="step">
+          <span class="step-number">1</span>
+          <h3>Point</h3>
+          <p>Run <code>ikno init</code> and point it at your repos, notes, and sessions. Auto-detection finds most sources for you.</p>
+        </div>
+        <div class="step">
+          <span class="step-number">2</span>
+          <h3>Work</h3>
+          <p>Do your thing. Write code, take notes, pair with AI. Nothing changes about your workflow.</p>
+        </div>
+        <div class="step">
+          <span class="step-number">3</span>
+          <h3>Recap</h3>
+          <p>Run <code>ikno recap today</code> and get a clear summary. Pick from 6 built-in styles or write your own.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features reveal" aria-label="Features">
+    <div class="container">
+      <h2 class="sr-only">Features</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>Works with what you have</h3>
+          <p>Git repos, markdown notes, Obsidian vaults, Claude Code sessions. More sources coming -- Jira, Slack, calendar, browser history. No workflow changes needed.</p>
+        </div>
+        <div class="feature-card">
+          <h3>AI that understands context</h3>
+          <p>Not just bullet lists -- actual summaries that group related work, spot themes, and surface what mattered. Uses your own AI backend.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Your machine, your data</h3>
+          <p>Everything stays local. No cloud, no accounts, no telemetry. Config lives in ~/.config/ikno/ and nowhere else.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Ready in 60 seconds</h3>
+          <p>Run the init wizard, let it auto-detect your sources, get your first recap. No setup ceremony, no config files to write by hand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta reveal" aria-label="Get started">
+    <div class="container">
+      <h2>See what you actually did today.</h2>
+      <p class="cta-sub">Open source. Local-first. The core is free -- always.</p>
+      <div class="cta-buttons">
+        <a href="https://github.com/charemma/ikno" class="btn btn-primary">Star on GitHub</a>
+        <a href="#install" class="btn btn-secondary">Get started</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer reveal" aria-label="Footer">
+    <div class="container">
+      <a href="https://github.com/charemma/ikno" aria-label="ikno on GitHub">GitHub</a>
+      <p>Apache 2.0</p>
+    </div>
+  </footer>
+
+  <style>
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+  </style>
+
+  <script>
+    (function () {
+      // Force left alignment on ALL terminal elements
+      var termBody = document.getElementById("terminal");
+      function forceLeft(el) {
+        el.style.setProperty("text-align", "left", "important");
+        for (var i = 0; i < el.children.length; i++) forceLeft(el.children[i]);
+      }
+      forceLeft(termBody);
+
+      // -- Terminal cycling animation --
+      var typedEl = document.getElementById("typed-cmd");
+      var cursorEl = document.getElementById("cursor");
+      var outputEl = document.getElementById("output");
+      var linesContainer = document.getElementById("terminal-lines");
+
+      var styles = [
+        {
+          command: "ikno recap thisweek --style digest",
+          lines: [
+            { text: "", cls: "" },
+            { text: "# Week 15 -- Apr 6 to Apr 12 -- 47 activities", cls: "heading" },
+            { text: "", cls: "" },
+            { text: "## Infrastructure", cls: "section" },
+            { text: "", cls: "" },
+            { text: "- Prometheus + Grafana on k3s cluster", cls: "" },
+            { text: "- Node Exporter on RPi via NixOS module", cls: "" },
+            { text: "- Alert rules for disk and memory", cls: "" },
+            { text: "", cls: "" },
+            { text: "## CLI", cls: "section" },
+            { text: "", cls: "" },
+            { text: "- 6 prompt styles: brief, digest, stats...", cls: "" },
+            { text: "- Custom template system for prompts", cls: "" },
+            { text: "- Claude session parser landed", cls: "" },
+            { text: "", cls: "" },
+            { text: "## CI/CD", cls: "section" },
+            { text: "", cls: "" },
+            { text: "- Auto-tagging on release branches", cls: "" },
+            { text: "- Install script: Linux, macOS, ARM", cls: "" },
+            { text: "", cls: "" },
+            { text: '<span class="muted">5 repos, 1 vault, 3 sessions</span>', cls: "" },
+          ]
+        },
+        {
+          command: "ikno recap thisweek --style brief",
+          lines: [
+            { text: "", cls: "" },
+            { text: "# Week 15 -- Quick Summary", cls: "heading" },
+            { text: "", cls: "" },
+            { text: "- Monitoring stack deployed on k3s", cls: "" },
+            { text: "- 6 prompt styles + custom templates", cls: "" },
+            { text: "- Claude session parser shipped", cls: "" },
+            { text: "- CI auto-tags, cross-platform install", cls: "" },
+            { text: "- ADRs for plugin system and config", cls: "" },
+            { text: "", cls: "" },
+            { text: '<span class="muted">47 activities, 5 repos, 4 days</span>', cls: "" },
+          ]
+        },
+        {
+          command: "ikno recap thisweek --style stats",
+          lines: [
+            { text: "", cls: "" },
+            { text: "# Week 15 -- 47 activities", cls: "heading" },
+            { text: "", cls: "" },
+            { text: "## By Category", cls: "section" },
+            { text: "", cls: "" },
+            { text: 'Code    <span class="bar">\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2591\u2591\u2591\u2591\u2591\u2591\u2591</span>  42%', cls: "", hasBar: true },
+            { text: 'AI      <span class="bar">\u2588\u2588\u2588\u2588\u2588\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591</span>  25%', cls: "", hasBar: true },
+            { text: 'Infra   <span class="bar">\u2588\u2588\u2588\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591</span>  17%', cls: "", hasBar: true },
+            { text: 'Docs    <span class="bar">\u2588\u2588\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591</span>  11%', cls: "", hasBar: true },
+            { text: 'Other   <span class="bar">\u2588\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591</span>   5%', cls: "", hasBar: true },
+            { text: "", cls: "" },
+            { text: "## Work Type", cls: "section" },
+            { text: "", cls: "" },
+            { text: 'Build   <span class="bar">\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2591\u2591\u2591\u2591\u2591\u2591\u2591</span>  52%', cls: "", hasBar: true },
+            { text: 'Think   <span class="bar">\u2588\u2588\u2588\u2588\u2588\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591</span>  33%', cls: "", hasBar: true },
+            { text: 'Org     <span class="bar">\u2588\u2588\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591</span>  15%', cls: "", hasBar: true },
+          ]
+        }
+      ];
+
+      var currentStyle = 0;
+      var DISPLAY_DURATION = 5000;
+
+      function buildLines(lines) {
+        linesContainer.innerHTML = "";
+        lines.forEach(function (line) {
+          var div = document.createElement("div");
+          div.className = "output-line";
+          div.style.textAlign = "left";
+          if (line.cls) {
+            div.innerHTML = '<span class="' + line.cls + '">' + line.text + '</span>';
+          } else if (line.text) {
+            div.innerHTML = line.text;
+          } else {
+            div.innerHTML = "\n";
+          }
+          linesContainer.appendChild(div);
+        });
+      }
+
+      function typeCommand(command, callback) {
+        var ci = 0;
+        typedEl.textContent = "";
+        cursorEl.style.display = "inline-block";
+
+        function tick() {
+          if (ci < command.length) {
+            typedEl.textContent += command[ci];
+            ci++;
+            setTimeout(tick, 40 + Math.random() * 60);
+          } else {
+            cursorEl.style.display = "none";
+            setTimeout(callback, 400);
+          }
+        }
+        tick();
+      }
+
+      function revealOutput(lines) {
+        outputEl.classList.add("visible");
+        var domLines = linesContainer.querySelectorAll(".output-line");
+        var delay = 0;
+        for (var j = 0; j < domLines.length; j++) {
+          (function (el, d) {
+            setTimeout(function () { el.classList.add("visible"); }, d);
+          })(domLines[j], delay);
+          if (lines[j] && (lines[j].cls === "section")) {
+            delay += 80;
+          } else if (lines[j] && lines[j].hasBar) {
+            delay += 80;
+          } else if (lines[j] && lines[j].text === "") {
+            delay += 20;
+          } else {
+            delay += 40;
+          }
+        }
+        return delay;
+      }
+
+      function fadeOut(callback) {
+        outputEl.classList.remove("visible");
+        var domLines = linesContainer.querySelectorAll(".output-line");
+        domLines.forEach(function (el) { el.classList.remove("visible"); });
+        // Wait for CSS transition
+        setTimeout(callback, 300);
+      }
+
+      function showStyle(index) {
+        var style = styles[index];
+        buildLines(style.lines);
+        typeCommand(style.command, function () {
+          var totalRevealTime = revealOutput(style.lines);
+          setTimeout(function () {
+            fadeOut(function () {
+              currentStyle = (currentStyle + 1) % styles.length;
+              showStyle(currentStyle);
+            });
+          }, totalRevealTime + DISPLAY_DURATION);
+        });
+      }
+
+      setTimeout(function () { showStyle(0); }, 800);
+
+      // -- Copy buttons --
+      var copyBtns = document.querySelectorAll(".copy-btn");
+      for (var c = 0; c < copyBtns.length; c++) {
+        copyBtns[c].addEventListener("click", function () {
+          var btn = this;
+          var cmd = btn.getAttribute("data-cmd");
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(cmd).then(function () {
+              btn.textContent = "copied";
+              btn.classList.add("copied");
+              setTimeout(function () {
+                btn.textContent = "copy";
+                btn.classList.remove("copied");
+              }, 1500);
+            });
+          }
+        });
+      }
+
+      // -- Scroll reveal (Intersection Observer) --
+      var revealEls = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        revealEls.forEach(function (el) {
+          observer.observe(el);
+        });
+      } else {
+        // Fallback: show everything
+        revealEls.forEach(function (el) {
+          el.classList.add("visible");
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>

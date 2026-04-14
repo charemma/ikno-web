@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ikno-website
+  labels:
+    app: ikno-website
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ikno-website
+  template:
+    metadata:
+      labels:
+        app: ikno-website
+    spec:
+      containers:
+        - name: ikno-website
+          image: ghcr.io/charemma/ikno-website:latest
+          ports:
+            - containerPort: 80

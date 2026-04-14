@@ -1,0 +1,733 @@
+/* -- Catppuccin Frappe palette -- */
+:root {
+  --crust: #232634;
+  --mantle: #292c3c;
+  --base: #303446;
+  --surface0: #414559;
+  --surface1: #51576d;
+  --surface2: #626880;
+  --overlay0: #737994;
+  --overlay1: #838ba7;
+  --subtext0: #a5adce;
+  --subtext1: #b5bfe2;
+  --text: #c6d0f5;
+  --lavender: #babbf1;
+  --blue: #8caaee;
+  --sapphire: #85c1dc;
+  --sky: #99d1db;
+  --teal: #81c8be;
+  --green: #a6d189;
+  --yellow: #e5c890;
+  --peach: #ef9f76;
+  --maroon: #ea999c;
+  --red: #e78284;
+  --mauve: #ca9ee6;
+  --pink: #f4b8e4;
+  --flamingo: #eebebe;
+  --rosewater: #f2d5cf;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--crust);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Page sections snap into view */
+.hero,
+.positioning,
+.how-it-works,
+.features,
+.cta {
+  scroll-snap-align: start;
+}
+
+/* -- Layout -- */
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+/* -- Scroll animations -- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Graceful degradation: show everything if JS is off */
+.no-js .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* -- Hero -- */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.hero .hero-name,
+.hero .hero-tagline,
+.hero .subtitle {
+  text-align: center;
+}
+
+.hero .hero-name {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 5.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--blue);
+  margin-bottom: 0.75rem;
+}
+
+.hero .hero-tagline {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
+.hero .hero-tagline span {
+  color: var(--blue);
+}
+
+.hero .subtitle {
+  font-size: 1.15rem;
+  color: var(--subtext0);
+  max-width: 540px;
+  margin: 0 auto 3.5rem;
+  line-height: 1.5;
+}
+
+/* -- Terminal -- */
+
+.terminal-wrapper {
+  max-width: 900px;
+  margin: 0 auto 4rem;
+  text-align: left;
+}
+
+.terminal pre {
+  margin: 0;
+  text-align: left;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.terminal {
+  background: var(--mantle);
+  border: 1px solid var(--surface0);
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  text-align: left;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.terminal-header {
+  background: var(--base);
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--surface0);
+}
+
+.terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--surface1);
+}
+
+.terminal-title {
+  flex: 1;
+  text-align: center;
+  color: var(--overlay1);
+  font-size: 0.75rem;
+}
+
+.terminal-body {
+  padding: 1.25rem 1.5rem;
+  height: 420px;
+  text-align: left;
+  overflow-y: hidden;
+}
+
+.terminal-line {
+  white-space: pre-wrap;
+  word-break: break-word;
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+.terminal-line .prompt {
+  color: var(--blue);
+}
+
+.terminal-line .command {
+  color: var(--text);
+}
+
+/* Output lines for staggered animation */
+.output-line {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  text-align: left;
+}
+
+.output-line.visible {
+  opacity: 1;
+}
+
+/* Bar fill animation */
+.output-line .bar {
+  display: inline-block;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.4s ease;
+}
+
+.output-line.visible .bar {
+  clip-path: inset(0 0 0 0);
+}
+
+.terminal-output {
+  color: var(--subtext0);
+  text-align: left;
+}
+
+.terminal-output .heading {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.terminal-output .section {
+  color: var(--lavender);
+  font-weight: 600;
+}
+
+.terminal-output .highlight {
+  color: var(--green);
+}
+
+.terminal-output .muted {
+  color: var(--overlay0);
+}
+
+.terminal-output .bar {
+  color: var(--blue);
+}
+
+/* Cursor */
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.1em;
+  background: var(--text);
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Typing animation */
+.typed-text {
+  display: inline;
+}
+
+.output-block {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-align: left;
+}
+
+.output-block.visible {
+  opacity: 1;
+}
+
+/* -- Install -- */
+
+.install {
+  padding: 3rem 0 4rem;
+  text-align: center;
+}
+
+.install h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--subtext0);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.install-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.install-option {
+  display: flex;
+  align-items: center;
+  background: var(--mantle);
+  border: 1px solid var(--surface0);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  gap: 1rem;
+  transition: border-color 0.2s;
+  overflow: hidden;
+}
+
+.install-option:hover {
+  border-color: var(--surface1);
+}
+
+.install-label {
+  color: var(--overlay1);
+  font-size: 0.8rem;
+  min-width: 3rem;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.install-cmd {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--text);
+  flex: 1;
+  text-align: left;
+  overflow-x: auto;
+  white-space: nowrap;
+  min-width: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface1) transparent;
+}
+
+.install-cmd::-webkit-scrollbar {
+  height: 4px;
+}
+
+.install-cmd::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.install-cmd::-webkit-scrollbar-thumb {
+  background: var(--surface1);
+  border-radius: 2px;
+}
+
+.copy-btn {
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid var(--surface1);
+  border-radius: 4px;
+  color: var(--overlay1);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.copy-btn:hover {
+  color: var(--text);
+  border-color: var(--surface2);
+}
+
+.copy-btn.copied {
+  color: var(--green);
+  border-color: var(--green);
+}
+
+/* -- Divider -- */
+
+.divider {
+  border: none;
+  height: 1px;
+  background: var(--surface0);
+  margin: 0;
+}
+
+/* -- Positioning -- */
+
+.positioning {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.positioning > .container {
+  text-align: center;
+}
+
+.positioning h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+.positioning-points p {
+  font-size: 1.1rem;
+  color: var(--subtext0);
+  max-width: 640px;
+  margin: 0 auto 0.75rem;
+  line-height: 1.7;
+}
+
+.positioning-points p:last-child {
+  margin-bottom: 0;
+}
+
+/* -- How it works -- */
+
+.how-it-works {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.how-it-works > .container {
+  text-align: center;
+}
+
+.how-it-works h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3rem;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.step {
+  text-align: center;
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--surface0);
+  color: var(--blue);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.step h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.step p {
+  font-size: 0.9rem;
+  color: var(--subtext0);
+  line-height: 1.5;
+}
+
+.step code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--blue);
+  background: var(--surface0);
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+}
+
+/* -- Features -- */
+
+.features {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.feature-card {
+  background: var(--mantle);
+  border: 1px solid var(--surface0);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: border-color 0.2s;
+}
+
+.feature-card:hover {
+  border-color: var(--surface1);
+}
+
+.feature-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+  font-size: 0.9rem;
+  color: var(--subtext0);
+  line-height: 1.5;
+}
+
+/* -- CTA -- */
+
+.cta {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  text-align: center;
+  border-top: 1px solid var(--surface0);
+}
+
+.cta > .container {
+  text-align: center;
+}
+
+.cta h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.cta-sub {
+  font-size: 1.1rem;
+  color: var(--subtext0);
+  margin-bottom: 2rem;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: var(--crust);
+  border: 1px solid var(--blue);
+}
+
+.btn-primary:hover {
+  background: var(--lavender);
+  border-color: var(--lavender);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--blue);
+  border: 1px solid var(--surface1);
+}
+
+.btn-secondary:hover {
+  border-color: var(--blue);
+  color: var(--lavender);
+}
+
+/* -- Footer -- */
+
+.footer {
+  padding: 3rem 0;
+  text-align: center;
+  border-top: 1px solid var(--surface0);
+}
+
+.footer a {
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.footer a:hover {
+  color: var(--lavender);
+}
+
+.footer p {
+  margin-top: 0.75rem;
+  color: var(--overlay0);
+  font-size: 0.85rem;
+}
+
+/* -- Responsive -- */
+
+@media (max-width: 768px) {
+  html {
+    scroll-snap-type: none;
+  }
+
+  .hero,
+  .positioning,
+  .how-it-works,
+  .features,
+  .cta {
+    min-height: auto;
+  }
+
+  .hero {
+    padding: 4rem 0 3rem;
+  }
+
+  .hero .hero-name {
+    font-size: 3.5rem;
+  }
+
+  .hero .hero-tagline {
+    font-size: 1.6rem;
+  }
+
+  .hero .subtitle {
+    font-size: 1rem;
+  }
+
+  .terminal {
+    font-size: 0.75rem;
+  }
+
+  .terminal-body {
+    padding: 1rem;
+    height: 380px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .positioning h2,
+  .how-it-works h2,
+  .cta h2 {
+    font-size: 1.5rem;
+  }
+
+  .install-cmd {
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero .hero-name {
+    font-size: 2.8rem;
+  }
+
+  .hero .hero-tagline {
+    font-size: 1.3rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .install-option {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .install-label {
+    text-align: left;
+  }
+
+  .install-cmd {
+    font-size: 0.75rem;
+  }
+
+  .terminal {
+    font-size: 0.7rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+}
