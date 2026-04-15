@@ -51,10 +51,35 @@ body {
 /* Page sections snap into view */
 .hero,
 .positioning,
+.use-cases,
 .how-it-works,
 .features,
 .cta {
   scroll-snap-align: start;
+}
+
+.use-cases {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.use-cases > .container {
+  text-align: center;
+}
+
+.use-cases h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3rem;
+}
+
+.use-cases .step h3 {
+  color: var(--blue);
 }
 
 /* -- Layout -- */
