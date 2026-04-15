@@ -78,8 +78,50 @@ body {
   margin-bottom: 3rem;
 }
 
-.use-cases .step h3 {
+.use-cases-intro {
+  font-size: 1.1rem;
+  color: var(--subtext0);
+  max-width: 640px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+}
+
+.use-cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  text-align: left;
+}
+
+.use-case {
+  background: var(--mantle);
+  border: 1px solid var(--surface0);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.use-case h3 {
   color: var(--blue);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.use-case p {
+  color: var(--subtext0);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .use-cases-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .use-cases-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* -- Layout -- */
